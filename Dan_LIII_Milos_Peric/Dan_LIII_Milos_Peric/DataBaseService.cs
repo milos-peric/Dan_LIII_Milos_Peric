@@ -9,6 +9,61 @@ namespace Dan_LIII_Milos_Peric
 {
     class DataBaseService
     {
+        internal List<vwManager> GetAllManagers()
+        {
+            try
+            {
+                using (HotelServiceEntities context = new HotelServiceEntities())
+                {
+                    List<vwManager> list = new List<vwManager>();
+                    list = (from x in context.vwManagers select x).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        internal List<vwEmployee> GetAllEmployees()
+        {
+            try
+            {
+                using (HotelServiceEntities context = new HotelServiceEntities())
+                {
+                    List<vwEmployee> list = new List<vwEmployee>();
+                    list = (from x in context.vwEmployees select x).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        internal vwEmployee EditEmployeeSalary(vwEmployee employee)
+        {
+            try
+            {
+                using (HotelServiceEntities context = new HotelServiceEntities())
+                {
+                    tblEmployee employeeSalaryToEdit = (from e in context.tblEmployees where e.EmployeeID == employee.EmployeeID select e).First();
+                    employeeSalaryToEdit.Salary = employee.Salary;
+                    context.SaveChanges();
+                    return employee;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
         internal vwManager AddManager(vwManager manager)
         {
             try

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dan_LIII_Milos_Peric.View"
         mc:Ignorable="d"
-        Title="ManagerView" Height="450" Width="700" Background="#FF767849" WindowStartupLocation="CenterScreen">
+        Title="ManagerView" Height="450" Width="820" Background="#FF767849" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin"            Value="0,0,10,0" />
@@ -21,7 +21,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
@@ -34,23 +34,25 @@
             <Label Content="Manager Menu" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"/>
 
         </StackPanel>
-        <StackPanel Grid.Row="0"  Orientation="Vertical" HorizontalAlignment="Right" >
+        <StackPanel Grid.Row="0"  Orientation="Vertical" HorizontalAlignment="Right" Grid.RowSpan="2">
             <TextBlock Text="Currently logged in as:" Foreground="White" Margin="0 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-            <TextBlock Text="{Binding Manager.UserName, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF1B9326" FontWeight="Bold" Margin="30 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="{Binding Manager.UserName, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFD65630" FontWeight="Bold" Margin="30 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="Floor Number:" Foreground="White" Margin="0 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="{Binding Manager.FloorNumber, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFD65630" FontWeight="Bold" Margin="50 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
         </StackPanel>
-        <DataGrid x:Name="myDataGrid" x:FieldModifier="public" Grid.Row="2" ItemsSource="{Binding WarehouseItemList, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding WarehouseItem, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" HeadersVisibility="Column"
+        <DataGrid x:Name="myDataGrid" x:FieldModifier="public" Grid.Row="2" ItemsSource="{Binding EmployeeListOnManagerFloor, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Employee, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" HeadersVisibility="Column"
                       AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Center" Margin="0 0 0 0" HorizontalContentAlignment="Center" AlternatingRowBackground="LightGray" Background="#FF9B9B9B" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Full Name" Width="Auto" Binding="{Binding ID}"/>
-                <DataGridTextColumn Header="DOB" Width="Auto" Binding="{Binding ProductName}"/>
-                <DataGridTextColumn Header="Email" Width="Auto" Binding="{Binding ProductNumber}"/>
-                <DataGridTextColumn Header="User Name" Width="Auto" Binding="{Binding Amount}"/>
-                <DataGridTextColumn Header="Floor Number" Width="Auto" Binding="{Binding Price}"/>
-                <DataGridTextColumn Header="Gender" Width="Auto" Binding="{Binding InStock}"/>
-                <DataGridTextColumn Header="Citizenship" Width="Auto" Binding="{Binding InStock}"/>
-                <DataGridTextColumn Header="WorkType" Width="Auto" Binding="{Binding InStock}"/>
-                <DataGridTextColumn Header="Salary" Width="Auto" Binding="{Binding InStock}"/>
+                <DataGridTextColumn Header="Full Name" Width="Auto" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Header="DOB" Width="Auto" Binding="{Binding DateOfBirth, StringFormat=d}"/>
+                <DataGridTextColumn Header="Email" Width="Auto" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="User Name" Width="Auto" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="Floor Number" Width="Auto" Binding="{Binding FloorNumber}"/>
+                <DataGridTextColumn Header="Gender" Width="Auto" Binding="{Binding Gender}"/>
+                <DataGridTextColumn Header="Citizenship" Width="Auto" Binding="{Binding Citizenship}"/>
+                <DataGridTextColumn Header="Work Type" Width="Auto" Binding="{Binding WorkType}"/>
+                <DataGridTextColumn Header="Salary" Width="Auto" Binding="{Binding Salary}"/>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
@@ -60,8 +62,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Command="{Binding Path=DataContext.EditItemCommand, RelativeSource= {RelativeSource FindAncestor,
-                                       AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}" Content="Set Salary" Margin="5,0,5,0" Background="Gray"/>
+                                <Button Command="{Binding Path=DataContext.SetSalaryCommand, RelativeSource= {RelativeSource FindAncestor,
+                                       AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}" Width="Auto" Content="Set Salary" Margin="5,0,5,0" Background="#FF553838"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -70,7 +72,7 @@
         </DataGrid>
 
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding AddItemCommand}" Content="Add Item" Width="Auto" Height="30"/>
+            <Button Command="{Binding SetAllSalariesCommand}" Content="Set All Salaries" Width="Auto" Height="30"/>
             <Button Command="{Binding LogoutCommand}" Content="Logout" Width="Auto" Height="30"/>
         </StackPanel>
 

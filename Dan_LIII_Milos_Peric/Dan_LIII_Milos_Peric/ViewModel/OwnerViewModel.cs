@@ -13,10 +13,23 @@ namespace Dan_LIII_Milos_Peric.ViewModel
 {
     class OwnerViewModel : ViewModelBase
     {
-        OwnerView owner;
+        OwnerView ownerView;
+        DataBaseService dataBaseService = new DataBaseService();
         public OwnerViewModel(OwnerView viewOwner)
         {
-            owner = viewOwner;
+            ownerView = viewOwner;
+            managerList = dataBaseService.GetAllManagers().ToList();
+        }
+
+        private List<vwManager> managerList;
+        public List<vwManager> ManagerList
+        {
+            get { return managerList; }
+            set
+            {
+                managerList = value;
+                OnPropertyChanged("ManagerList");
+            }
         }
 
         private ICommand addEmployeeCommand;
@@ -95,7 +108,7 @@ namespace Dan_LIII_Milos_Peric.ViewModel
                     case MessageBoxResult.OK:
                         LoginView loginView = new LoginView();
                         Thread.Sleep(1000);
-                        owner.Close();
+                        ownerView.Close();
                         loginView.Show();
                         return;
                     case MessageBoxResult.Cancel:

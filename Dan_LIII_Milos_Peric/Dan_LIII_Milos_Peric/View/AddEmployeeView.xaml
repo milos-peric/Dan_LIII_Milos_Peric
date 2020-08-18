@@ -40,7 +40,7 @@
             <Label Content="Full Name:"/>
             <TextBox Text="{Binding Employee.FullName, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Birth Date:"/>
-            <DatePicker Text="{Binding Employee.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+            <DatePicker SelectedDate="{Binding Employee.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
             <Label Content="Email:" />
             <TextBox Text="{Binding Employee.Email, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="User Name:" />

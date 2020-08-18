@@ -16,20 +16,14 @@ using System.Windows.Shapes;
 namespace Dan_LIII_Milos_Peric.View
 {
     /// <summary>
-    /// Interaction logic for EmployeeView.xaml
+    /// Interaction logic for SetSalaryView.xaml
     /// </summary>
-    public partial class EmployeeView : Window
+    public partial class SetSalaryView : Window
     {
-        public EmployeeView()
+        public SetSalaryView(vwManager manager, vwEmployee employee)
         {
             InitializeComponent();
-            DataContext = new EmployeeViewModel(this);
-        }
-
-        public EmployeeView(vwEmployee employee)
-        {
-            InitializeComponent();
-            DataContext = new EmployeeViewModel(this, employee);
+            DataContext = new SetSalaryViewModel(this, manager, employee);
         }
     }
 }

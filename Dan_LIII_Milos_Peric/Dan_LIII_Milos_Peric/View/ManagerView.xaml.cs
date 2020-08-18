@@ -20,6 +20,12 @@ namespace Dan_LIII_Milos_Peric.View
     /// </summary>
     public partial class ManagerView : Window
     {
+        public ManagerView()
+        {
+            InitializeComponent();
+            DataContext = new ManagerViewModel(this);
+        }
+
         public ManagerView(vwManager manager)
         {
             InitializeComponent();

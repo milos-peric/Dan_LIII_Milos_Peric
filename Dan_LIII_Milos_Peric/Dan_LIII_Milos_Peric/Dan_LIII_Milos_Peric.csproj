@@ -90,6 +90,7 @@
       <DependentUpon>HotelServiceDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utility\EncryptionHelper.cs" />
+    <Compile Include="Utility\EntryValidation.cs" />
     <Compile Include="Utility\PasswordLoader.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddManagerViewModel.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManagerViewModel.cs" />
     <Compile Include="ViewModel\OwnerViewModel.cs" />
+    <Compile Include="ViewModel\SetSalaryViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddEmployeeView.xaml.cs">
       <DependentUpon>AddEmployeeView.xaml</DependentUpon>
@@ -115,6 +117,9 @@
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SetSalaryView.xaml.cs">
+      <DependentUpon>SetSalaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="vwEmployee.cs">
       <DependentUpon>HotelServiceDatabaseModel.tt</DependentUpon>
@@ -156,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OwnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SetSalaryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

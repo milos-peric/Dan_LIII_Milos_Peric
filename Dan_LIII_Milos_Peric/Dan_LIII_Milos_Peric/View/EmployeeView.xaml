@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dan_LIII_Milos_Peric.View"
         mc:Ignorable="d"
-        Title="EmployeeView" Height="450" Width="800">
+        Title="EmployeeView" Height="450" Width="760" Background="#FF494978" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"            Value="0,0,10,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding"           Value="10,0,10,0" />
+            <Setter Property="Background"        Value="#545d6a" />
+            <Setter Property="Width"             Value="60" />
+            <Setter Property="Foreground"        Value="White" />
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Label Content="Employee Menu" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="0"  Orientation="Vertical" HorizontalAlignment="Right" Grid.RowSpan="2">
+            <TextBlock Text="Currently logged in as:" Foreground="White" Margin="0 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="{Binding Employee.UserName, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFD65630" FontWeight="Bold" Margin="30 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="Work Type:" Foreground="White" Margin="0 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="{Binding Employee.WorkType, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFD65630" FontWeight="Bold" Margin="30 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="Floor Number:" Foreground="White" Margin="0 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="{Binding Employee.FloorNumber, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFD65630" FontWeight="Bold" Margin="50 0 30 0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding AddItemCommand}" Content="Button" Width="Auto" Height="30"/>
+            <Button Command="{Binding LogoutCommand}" Content="Logout" Width="Auto" Height="30"/>
+        </StackPanel>
+
     </Grid>
 </Window>
+
